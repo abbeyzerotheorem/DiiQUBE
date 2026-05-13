@@ -25,6 +25,7 @@ if (dropdown) {
         if (window.innerWidth <= 768) {
             e.preventDefault();
             dropdown.classList.toggle('active');
+            dropdown.setAttribute('aria-expanded', dropdown.classList.contains('active'));
         }
     });
 }
@@ -165,6 +166,8 @@ function rotateBlogCards() {
     bigImg.src = blogData[current].img;
     bigTitle.textContent = blogData[current].title;
     bigDesc.textContent = blogData[current].desc;
+    document.getElementById("blogBigText").innerText = blogData[current].text;
+    bigImg.alt = `${blogData[current].title} feature image`;
 
     // Reset timer bar
     const timer = document.querySelector(".blog-timer-progress");
@@ -178,7 +181,7 @@ function rotateBlogCards() {
 
     setTimeout(() => {
       bigCard.classList.remove("slide-in");
-    }, 0);
+    }, 400);
 
     // Update small cards
     let next1 = (current + 1) % blogData.length;
@@ -187,12 +190,12 @@ function rotateBlogCards() {
     document.getElementById("blogSmallImg1").src = blogData[next1].img;
     document.getElementById("blogSmallTitle1").innerText = blogData[next1].title;
     document.getElementById("blogSmallDesc1").innerText = blogData[next1].desc;
-    document.querySelector(".blogSmallText").innerText = blogData[next1].text;
+    document.getElementById("blogSmallText1").innerText = blogData[next1].text;
 
     document.getElementById("blogSmallImg2").src = blogData[next2].img;
     document.getElementById("blogSmallTitle2").innerText = blogData[next2].title;
     document.getElementById("blogSmallDesc2").innerText = blogData[next2].desc;
-    document.querySelector(".blogSmallText").innerText = blogData[next1].text;
+    document.getElementById("blogSmallText2").innerText = blogData[next2].text;
 
   }, 0);
 }
